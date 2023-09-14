@@ -1,0 +1,37 @@
+type Query {
+    findBookById(id: ID):Book,
+    findAllBook:[Book],
+    findAuthor(id:ID):Author,
+    findAllAuthor:[Author]
+}
+
+type Mutation {
+  addBook(title: String, publication_year: Int):Book,
+  updateBook(id:ID, title: String, publication_year: Int):Book,
+  addAuthor(name: String):Author,
+  addAuthorWithBooks(authorInput:AuthorInput):Author
+}
+
+input AuthorInput{
+  name: String
+  books: [BookInput!]!
+}
+
+input BookInput {
+  id: ID!
+  title: String!
+  publication_year: Int!
+}
+
+type Book {
+  id: ID
+  title: String
+  publication_year: Int
+}
+
+type Author{
+  id: ID
+  name: String
+  books: [Book!]!
+}
+
