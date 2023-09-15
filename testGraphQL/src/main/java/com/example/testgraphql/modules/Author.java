@@ -11,11 +11,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.cglib.core.GeneratorStrategy;
 
 @Entity
+@Getter
+@Setter
 public class Author {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,15 +31,10 @@ public class Author {
 	@OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
 	private List<Book> books;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setBooks(List<Book> books) {
-		this.books = books;
+	@Override
+	public String toString() {
+		return "Author{" +
+			"id=" + id +
+			", name='" + name + '\'';
 	}
 }

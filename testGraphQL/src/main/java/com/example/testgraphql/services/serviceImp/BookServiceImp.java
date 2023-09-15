@@ -3,8 +3,8 @@ package com.example.testgraphql.services.serviceImp;
 import com.example.testgraphql.modules.Book;
 import com.example.testgraphql.repositories.BookRepository;
 import com.example.testgraphql.services.BookService;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,12 @@ public class BookServiceImp implements BookService {
 	}
 
 	@Override
-	public List<Book> getBooksByAuthorIds(List<Integer> authorIDs) {
+	public Map<Integer, List<Book>> getBooksByAuthorIds(List<Integer> authorIDs) {
+		return null;
+	}
+
+	@Override
+	public Map<Integer, List<Book>> booksForAuthors(List<Integer> authorIDs) {
 		return null;
 	}
 

@@ -9,7 +9,7 @@ import java.util.concurrent.CompletionStage;
 import org.dataloader.BatchLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@DgsDataLoader
+@DgsDataLoader(name = "bookLoader")
 public class BookDataLoader implements BatchLoader<Integer, Book> {
 
 	@Autowired
@@ -17,7 +17,6 @@ public class BookDataLoader implements BatchLoader<Integer, Book> {
 
 	@Override
 	public CompletionStage<List<Book>> load(List<Integer> keys) {
-		return CompletableFuture.supplyAsync(() -> bookRepository.findByAuthorIdIn(keys));
-
+		return CompletableFuture.supplyAsync(() -> bookRepository.findByIdIn(keys));
 	}
 }

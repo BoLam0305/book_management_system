@@ -1,37 +1,27 @@
-type Query {
-    findBookById(id: ID):Book,
-    findAllBook:[Book],
-    findAuthor(id:ID):Author,
-    findAllAuthor:[Author]
+type Query{
+  authors: [Author!]!
+  allBooks : [Book!]!
+  getAuthorsWithBooks:[Author!]!
+  findBooksWithAuthors:[Book!]!
+
 }
 
 type Mutation {
-  addBook(title: String, publication_year: Int):Book,
-  updateBook(id:ID, title: String, publication_year: Int):Book,
-  addAuthor(name: String):Author,
-  addAuthorWithBooks(authorInput:AuthorInput):Author
+  createAuthor(name: String!): Author!
+  updateAuthor(id:ID, name: String!): Author!
+  deleteAuthor(id: ID!): ID!
+  createBook(title:String!, publication_year: Int!, authorId: ID!): Book!
 }
 
-input AuthorInput{
+type Author {
+  id: ID
   name: String
-  books: [BookInput!]!
-}
-
-input BookInput {
-  id: ID!
-  title: String!
-  publication_year: Int!
+  books: [Book!]
 }
 
 type Book {
   id: ID
-  title: String
-  publication_year: Int
+  title: String!
+  publication_year: Int!
+  author: Author
 }
-
-type Author{
-  id: ID
-  name: String
-  books: [Book!]!
-}
-

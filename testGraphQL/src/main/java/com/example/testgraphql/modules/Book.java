@@ -11,10 +11,14 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
+@Getter
+@Setter
 public class Book {
 
 	@Id
@@ -31,33 +35,6 @@ public class Book {
 	@JoinColumn(name = "author_id")
 	private Author author;
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public int getPublication_year() {
-		return publication_year;
-	}
-
-	public void setPublication_year(int publication_year) {
-		this.publication_year = publication_year;
-	}
-
-	public void setAuthor(Author author) {
-		this.author = author;
-	}
 
 	@Override
 	public String toString() {
@@ -65,6 +42,7 @@ public class Book {
 			"id=" + id +
 			", title='" + title + '\'' +
 			", publication_year=" + publication_year +
+			", author=" + author +
 			'}';
 	}
 }
