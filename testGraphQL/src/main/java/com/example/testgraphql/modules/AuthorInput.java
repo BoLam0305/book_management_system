@@ -1,8 +1,6 @@
 package com.example.testgraphql.modules;
 
 import java.util.List;
-import java.util.Map;
-
 public class AuthorInput {
 	private String name;
 	private List<Book> books;

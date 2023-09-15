@@ -8,11 +8,8 @@ import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsData;
 import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.DgsQuery;
-import com.netflix.graphql.dgs.InputArgument;
-import graphql.schema.DataFetchingEnvironment;
+
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import org.dataloader.DataLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @DgsComponent
@@ -22,11 +19,14 @@ public class BookFetchers {
 
 	@Autowired
 	private AuthorRepository authorRepository;
-
-	@DgsQuery
-	public List<Book>findBooksWithAuthors(){
-		return bookRepository.findBooksWithAuthors();
-	}
+//
+//	@DgsData(parentType = "Author", field = "books")
+//	public CompletableFuture<Book> book (DgsDataFetchingEnvironment dfe){
+//		System.out.println("[book loader] call");
+//		DataLoader<Integer, Book> dataLoader = dfe.getDataLoader("bookLoader");
+//		Integer bookId = dfe.getArgument("id");
+//		return dataLoader.load(bookId);
+//	}
 
 	@DgsMutation
 	public Book createBook(String title, int publication_year, int authorId) {
@@ -42,7 +42,7 @@ public class BookFetchers {
 	}
 
 	@DgsQuery
-	public List<Book> allBooks () {
+	public List<Book> books () {
 		List<Book> books = bookRepository.findAll();
 		System.out.println(books.toString());
 		return bookRepository.findAll();

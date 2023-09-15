@@ -1,17 +1,11 @@
 package com.example.testgraphql.datafetchers;
-
-import com.example.testgraphql.dataloader.AuthorDataLoader;
 import com.example.testgraphql.modules.Author;
 import com.example.testgraphql.repositories.AuthorRepository;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsData;
 import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.DgsQuery;
-
-import graphql.schema.DataFetchingEnvironment;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import org.dataloader.DataLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @DgsComponent
@@ -24,17 +18,16 @@ public class AuthorFetchers {
 		return authorRepository.findAll();
 	}
 
-	@DgsQuery
-	public List<Author>getAuthorsWithBooks(){
-		return authorRepository.findAuthorsWithBooks();
-	}
 
-	@DgsData(parentType = "Book", field = "author")
-	public CompletableFuture<Author> author (DataFetchingEnvironment dfe){
-		DataLoader<String, Author> dataLoader = dfe.getDataLoader("authorLoader");
-		String id = dfe.getArgument("directorId");
-		return dataLoader.load(id);
-	}
+//
+//	@DgsData(parentType = "Book", field = "authors")
+//	public CompletableFuture<Author> author (DgsDataFetchingEnvironment dfe){
+//		System.out.println("[author loader] call");
+//		DataLoader<String, Author> dataLoader = dfe.getDataLoader("authorLoader");
+//		String id = dfe.getArgument("id");
+//		System.out.println("[authorLoader]"+id);
+//		return dataLoader.load(id);
+//	}
 
 	@DgsMutation
 	public Author createAuthor(String name){

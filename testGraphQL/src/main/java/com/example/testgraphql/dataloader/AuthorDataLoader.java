@@ -1,7 +1,6 @@
 package com.example.testgraphql.dataloader;
 
 import com.example.testgraphql.modules.Author;
-import com.example.testgraphql.modules.Book;
 import com.example.testgraphql.repositories.AuthorRepository;
 import com.netflix.graphql.dgs.DgsDataLoader;
 import java.util.List;
